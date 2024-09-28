@@ -1,21 +1,21 @@
-<H2>URL shortening service</H2>
+# URL shortening service
 
-<H3>Functional Requirements : </H3>
+## Functional Requirements : 
 1. Given a URL, generate a Short URL
 2. When a user accesses a short URL, redirect to the original URL
 
-<H3>Non Functional Requirements : </H3>
+## Non Functional Requirements :
 1. The system should be highly available. If the system is not available, the system redirects would start failing.
 2. URL redirection should happen with low latency
 3. System should protect against the URLs being guessed.
 
-<H3>Extended Requirements: </H3>
+## Extended Requirements:
 1. System should be accessible by REST APIs 
 2. Analytics
 
-<H2>Overview</H2>
-<H3>Base Diagram</H3>
-![overview](/images/url-shortening/base-architecture.png)
+## Overview</H2>
+### Base Diagram :
+![overview](../images/url-shortening/base-architecture.png)
 
 <H3>Transition 1- Using Offline Key Generation</H3>
 ![transition-1](/images/url-shortening/offline-key-generation.png)
