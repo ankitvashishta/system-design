@@ -15,19 +15,19 @@
 
 <H2>Overview</H2>
 <H3>Base Diagram</H3>
-![overview](../images/url-shortening/base-architecture.png)
+![overview](/images/url-shortening/base-architecture.png)
 
 <H3>Transition 1- Using Offline Key Generation</H3>
-![overview](../images/url-shortening/offline-key-generation.png)
+![transition-1](/images/url-shortening/offline-key-generation.png)
 
 <H3>Transition 2 - Using Load Balancer</H3>
-![overview](../images/url-shortening/load-balancer.png)
+![transition-2](/images/url-shortening/load-balancer.png)
 
 <H3>Transition 3 - Using Cache & Sharded Key DB</H3>
-![overview](../images/url-shortening/cache-sharded-db.png)
+![transition-3](/images/url-shortening/cache-sharded-db.png)
 
 <H3>Transition 4 - Using Zookeeper</H3>
-![overview](../images/url-shortening/zookeeper.png)
+![transition-4](/images/url-shortening/zookeeper.png)
 
 <H2>Capacity Estimations </H2>
 
