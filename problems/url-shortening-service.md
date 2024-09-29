@@ -72,7 +72,7 @@
    The size of the short URL created should be 7 characters.
 4. To avoid guessing of the URLs created, we can add an extra random prefix OR suffix of say 3 characters.
 
-<H2>Keys Generation </H2>
+## Keys Generation
 ### Runtime/Online key generation 
 #### Approach 
 We can opt for random key generation.
