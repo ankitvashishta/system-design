@@ -149,7 +149,7 @@ If an application server crashes after a range has been allocated to it, that ra
 - Return
    - HTTP Status Code `204 : No Content`; otherwise, it returns an error code.
 
-## Database selection
+## Data storage & retrieval
 ### Criteria
 
 - Need to store billion of records
@@ -158,6 +158,21 @@ If an application server crashes after a range has been allocated to it, that ra
 - The only relationship between records is between registered user & the short URL created.
 - A NoSQL DB choice would be easy to scale
 - For SQL base, sharding can also work.
+
+### Data Partitioning 
+
+- Range based partitioning
+  - Store URLs in separate partitions based on a range of first letter
+- Hashing
+  - Calculate the hash of the short URL, and using this, determine the partition to use
+  - Use consistent hashing
+
+### Cache
+
+- Eviction Policy
+  - Use LRU(Least recently used) URL to delete
+- Cache Update
+  - If a URL is not found in Cache, hit DB and pass the entry to cache.
 
 ## Summary : 
 1. New URLs : 100 URLs per second : 250 million new URL per month
