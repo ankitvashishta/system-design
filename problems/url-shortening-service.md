@@ -103,6 +103,61 @@ Here, if a server consumes all of its range, it will again bo back to the Zookee
 #### Drawback 
 If an application server crashes after a range has been allocated to it, that range would be wasted. However, since we have more than 3 trillion ranges, 1 million wasted here and there won't be significant.
 
+## System APIs
+
+### `POST` user creation/enrollment
+
+- Parameters
+
+ Name | Type     | Note
+  ---- |----------| ----
+  `user_name` | `string` | User identifier user is registered with.
+  `plan` | `enum`   | User plan used to determine number off URLs the user can shorten in a given time frame.
+  `valid_through` | `string` | Time till the user plan is valid.
+- Return
+   - HTTP Status Code `201 : Created` for successful creation/enrollment of user, else it returns the error code.
+
+### `POST` createURL
+
+- Parameters
+
+  Name | Type                       | Note
+  ---- |----------------------------| ----
+  `jwt_token` OR `api_key` | `bearer_token` OR `string` | The jwt_token OR the api_key is used to authenticate and authorise the user. This will then throttle users based on their allocated quota.
+  `original_url` | `string`                   | The URL to be shortened.
+  `expire_date` | `string`                   | Optional expiration date for the shortened URL.
+- Return
+   - `string`
+   - HTTP Status Code `201 : Created`; otherwise, it returns an error code.
+
+### `GET` redirectURL
+
+- Parameters
+  - `Short URL` - Enter short URL in the browser address bar
+- Return
+  - Status Code `301 : Permanent Redirect`, and navigates to the corresponding original URL
+  - If the short url passed is incorrect, `404 : Not Found`
+  
+### deleteURL
+
+- Parameters
+
+  Name | Type                       | Note
+    ---- |----------------------------| ----
+  `jwt_token` OR `api_key` | `bearer_token` OR `string` | The jwt_token OR the api_key is used to authenticate and authorise the user. This will then throttle users based on their allocated quota.
+  `short_url` | `string`                   | The URL to be deleted.
+- Return
+   - HTTP Status Code `204 : No Content`; otherwise, it returns an error code.
+
+## Database selection
+### Criteria
+
+- Need to store billion of records
+- Read Heavy
+- Each object is ~ 1K
+- The only relationship between records is between registered user & the short URL created.
+- A NoSQL DB choice would be easy to scale
+- For SQL base, sharding can also work.
 
 ## Summary : 
 1. New URLs : 100 URLs per second : 250 million new URL per month
